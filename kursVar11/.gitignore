@@ -1,3 +1,9 @@
+# custom
+/packages
+/Debug
+/.vs
+*.csproj.user
+
 # Prerequisites
 *.d
 
