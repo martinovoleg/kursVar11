@@ -3,7 +3,7 @@
 
 void Ellipse::ToStd(std::ostream & fout)
 {
-	fout << type() << ": " << sysMsgs[lang_now][8] << a << sysMsgs[lang_now][9] << b << *Center << endl;
+	fout << type() << ": " << endl << sysMsgs[lang_now][8] << a << endl << sysMsgs[lang_now][9] << b << endl << sysMsgs[lang_now][28] << *Center << endl;
 }
 
 void Ellipse::read(ifstream & fin)

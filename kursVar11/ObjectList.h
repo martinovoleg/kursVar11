@@ -17,7 +17,7 @@ public:
 	size_t getCountRectangle();
 	size_t size();
 	void push_back(Object* object);
-	void DeleteLastItemByTag(string type);
+	bool DeleteLastItemByTag(string type);
 	bool EditItemInPos(int pos = -1, Object *obj = nullptr);
 	ObjectList() {};
 	friend ostream& operator<<(ostream& output, ObjectList&container);

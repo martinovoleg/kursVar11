@@ -3,7 +3,7 @@
 
 ostream & operator<<(ostream & output, Point & point)
 {
-	output << " X: " << point.GetX() << " " << " Y: " << point.GetY() << " ";
+	output << endl << " X: " << point.GetX() << endl << " Y: " << point.GetY() << endl;
 	return output;
 }
 

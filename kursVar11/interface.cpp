@@ -115,12 +115,28 @@ void MsgInit() {
 	sysMsgs[eng][18] = "2. The coordinates of point B";
 	sysMsgs[rus][19] = "3. Координаты точки C";
 	sysMsgs[eng][19] = "3. The coordinates of point C";
-	sysMsgs[rus][20] = "3. Координаты точки D";
-	sysMsgs[eng][20] = "3. The coordinates of point D";
+	sysMsgs[rus][20] = "4. Координаты точки D";
+	sysMsgs[eng][20] = "4. The coordinates of point D";
 	sysMsgs[rus][21] = "Выберите поле для заполнения/редактирования: ";
 	sysMsgs[eng][21] = "Select a field for filling / editing: ";
 	sysMsgs[rus][22] = "Введите номер элемента: ";
 	sysMsgs[eng][22] = "Enter the element number: ";
+	sysMsgs[rus][23] = "Введите данные для первого эллипса: ";
+	sysMsgs[eng][23] = "Enter the data for the first ellipse:";
+	sysMsgs[rus][24] = "Введите данные для второго эллипса: ";
+	sysMsgs[eng][24] = "Enter the data for the second ellipse:";
+	sysMsgs[rus][25] = "Расстояние между центрами эллипсов: ";
+	sysMsgs[eng][25] = "The distance between the centers of the ellipses: ";
+	sysMsgs[rus][26] = "Элемент удален!";
+	sysMsgs[eng][26] = "The item has been deleted!";
+	sysMsgs[rus][27] = "Элемент не найден!";
+	sysMsgs[eng][27] = "Item not found!";
+	sysMsgs[rus][28] = "Координаты центра: ";
+	sysMsgs[eng][28] = "Coordinates of the center: ";
+	sysMsgs[rus][29] = "Элемент добавлен! ";
+	sysMsgs[eng][29] = "The item is added!";
+	sysMsgs[rus][30] = "Контейнер пуст! ";
+	sysMsgs[eng][30] = "The container is empty!";
 }
 
 void Interface::Init(std::string config) {
@@ -318,6 +334,7 @@ void Interface::DrawSlide(int slide, int back_slide) {
 
 		Put(Range(59, 61));
 		Put(65);
+		Put(80);
 		Put(Range(74, 77));
 
 		do {
@@ -337,7 +354,7 @@ void Interface::DrawSlide(int slide, int back_slide) {
 				Object *obj = nullptr;
 				bool isNumber = false;
 				while (!isNumber) {
-					cout << sysMsgs[rus][22];
+					cout << sysMsgs[lang_now][22];
 					cin >> number;
 					isNumber = obj->is_number(number);
 
@@ -349,11 +366,30 @@ void Interface::DrawSlide(int slide, int back_slide) {
 
 				int pos = stod(number);
 
-				if (!container.EditItemInPos(pos)) {
-					Interface::DrawSlide(demonstration, menu);
-				}
+				container.EditItemInPos(pos);
+				Interface::DrawSlide(demonstration, menu);
+			}
+			else if (key == 't' || key == 'е') {
+				Object *el1 = new Ellipse();
+				Object *el2 = new Ellipse();
+				system("cls");
+				std::cout << sysMsgs[lang_now][23] << std::endl;
+				system("pause");
+				container.EditItemInPos(-1, el1);
+
+				std::cout << sysMsgs[lang_now][24] << std::endl;
+				system("pause");
+				container.EditItemInPos(-1, el2);
+
+				std::cout << sysMsgs[lang_now][25] << *(Ellipse*)el1 - *(Ellipse*)el2 << endl;
+				system("pause");
+				Interface::DrawSlide(demonstration, menu);
 			}
 			else if (key == 's' || key == 'ы') {
+				if (container.size() == 0)
+				{
+					std::cout << sysMsgs[lang_now][30] << std::endl;
+				}
 				cout << endl << container;
 			}
 			else if (key == 'c' || key == 'с') {
@@ -386,6 +422,8 @@ void Interface::DrawSlide(int slide, int back_slide) {
 				Object*obj = new Ellipse();
 				container.EditItemInPos(-1, obj);
 				container.push_back(obj);
+				cout << sysMsgs[lang_now][29] << endl;
+				system("pause");
 			}
 			else if (key == '2') {
 				string tag;
@@ -393,6 +431,7 @@ void Interface::DrawSlide(int slide, int back_slide) {
 
 				while (key != '27')
 				{
+					system("cls");
 					cout << "1." + sysMsgs[lang_now][6] << endl;
 					cout << "2." + sysMsgs[lang_now][7] << endl;
 
@@ -401,10 +440,12 @@ void Interface::DrawSlide(int slide, int back_slide) {
 					if (key == '1')
 					{
 						container.DeleteLastItemByTag(sysMsgs[lang_now][6]);
+						Interface::DrawSlide(demonstration, menu);
 					}
 					else if (key == '2')
 					{
 						container.DeleteLastItemByTag(sysMsgs[lang_now][7]);
+						Interface::DrawSlide(demonstration, menu);
 					}
 				}
 			}
@@ -428,12 +469,15 @@ void Interface::DrawSlide(int slide, int back_slide) {
 				Object*obj = new Rectangle();
 				container.EditItemInPos(-1, obj);
 				container.push_back(obj);
+				cout << sysMsgs[lang_now][29] << endl;
+				system("pause");
 			}
 			else if (key == '2') {
 				char key = 1;
 
 				while (key != '27')
 				{
+					system("cls");
 					cout << "1." + sysMsgs[lang_now][10] << endl;
 					cout << "2." + sysMsgs[lang_now][11] << endl;
 
@@ -442,10 +486,12 @@ void Interface::DrawSlide(int slide, int back_slide) {
 					if (key == '1')
 					{
 						container.DeleteLastItemByTag(sysMsgs[lang_now][10]);
+						Interface::DrawSlide(demonstration, menu);
 					}
 					else if (key == '2')
 					{
 						container.DeleteLastItemByTag(sysMsgs[lang_now][11]);
+						Interface::DrawSlide(demonstration, menu);
 					}
 				}
 			}

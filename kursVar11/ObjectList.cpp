@@ -3,8 +3,10 @@
 
 ostream & operator<<(ostream & output, ObjectList & container)
 {
+	int i = 0;
+
 	for (auto item : container.objects) {
-		output << item;
+		output << ++i << ") " << item;
 	}
 	return output;
 }
@@ -38,16 +40,16 @@ ifstream & operator>>(ifstream & output, ObjectList & container)
 			output >> item;
 			container.objects.push_back(item);
 		}
+		type = "";
 	}
 	return output;
 }
 
 size_t ObjectList::getCountCircle()
 {
+	countCircle = 0;
 	for (auto item : objects)
 	{
-		countCircle = 0;
-
 		if (item->type() == sysMsgs[lang_now][6])
 		{
 			countCircle++;
@@ -58,10 +60,9 @@ size_t ObjectList::getCountCircle()
 
 size_t ObjectList::getCountEllipse()
 {
+	countEllipse = 0;
 	for (auto item : objects)
 	{
-		countEllipse = 0;
-
 		if (item->type() == sysMsgs[lang_now][7])
 		{
 			countEllipse++;
@@ -72,10 +73,10 @@ size_t ObjectList::getCountEllipse()
 
 size_t ObjectList::getCountSquare()
 {
+	countSquare = 0;
+
 	for (auto item : objects)
 	{
-		countSquare = 0;
-
 		if (item->type() == sysMsgs[lang_now][10])
 		{
 			countSquare++;
@@ -86,10 +87,10 @@ size_t ObjectList::getCountSquare()
 
 size_t ObjectList::getCountRectangle()
 {
+	countRectangle = 0;
+
 	for (auto item : objects)
 	{
-		countRectangle = 0;
-
 		if (item->type() == sysMsgs[lang_now][11])
 		{
 			countRectangle++;
@@ -108,37 +109,42 @@ void ObjectList::push_back(Object* object)
 	objects.push_back(object);
 }
 
-void ObjectList::DeleteLastItemByTag(string type)
+bool ObjectList::DeleteLastItemByTag(string type)
 {
-	for (int i = objects.size() - 1; i--; )
+	for (int i = objects.size(); i--; )
 	{
 		if (objects[i]->type() == type)
 		{
-			objects.erase(objects.begin() + (i - 1), objects.begin() + i);
-			break;
+			objects.erase(objects.begin() + i, objects.begin() + (i + 1));
+			cout << sysMsgs[lang_now][26] << endl;
+			system("pause");
+			return true;
 		}
 	}
+	cout << sysMsgs[lang_now][27] << endl;
+	system("pause");
+	return false;
 }
 
 bool ObjectList::EditItemInPos(int pos, Object *obj)
 {
 	string type;
-	Object* temp = nullptr;
+	Object* tempObj = nullptr;
 
 	if (obj == nullptr)
 	{
+		if ((pos < 0 || pos >= objects.size()))
+		{
+			return false;
+		}
+
 		type = objects[pos]->type();
-		temp = objects[pos];
+		tempObj = objects[pos];
 	}
 	else
 	{
 		type = obj->type();
-		temp = obj;
-	}
-
-	if ((pos < 0 || pos >= objects.size()) && obj == nullptr)
-	{
-		return false;
+		tempObj = obj;
 	}
 
 	char key = 1;
@@ -158,16 +164,16 @@ bool ObjectList::EditItemInPos(int pos, Object *obj)
 			{
 			case '1':
 			{
-				((Ellipse*)temp)->Set_a();
+				((Ellipse*)tempObj)->Set_a();
 			}break;
 			case '2':
 			{
-				((Ellipse*)temp)->Set_b();
+				((Ellipse*)tempObj)->Set_b();
 			}break;
 
 			case '3':
 			{
-				((Ellipse*)temp)->setCenter();
+				((Ellipse*)tempObj)->setCenter();
 			}break;
 
 			default:
@@ -195,26 +201,26 @@ bool ObjectList::EditItemInPos(int pos, Object *obj)
 			{
 			case '1':
 			{
-				temp = ((Rectangle*)temp)->getA();
+				temp = ((Rectangle*)tempObj)->getA();
 				temp->SetX();
 				temp->SetY();
 			}break;
 			case '2':
 			{
-				temp = ((Rectangle*)temp)->getB();
+				temp = ((Rectangle*)tempObj)->getB();
 				temp->SetX();
 				temp->SetY();
 			}break;
 
 			case '3':
 			{
-				temp = ((Rectangle*)temp)->getC();
+				temp = ((Rectangle*)tempObj)->getC();
 				temp->SetX();
 				temp->SetY();
 			}break;
 			case '4':
 			{
-				temp = ((Rectangle*)temp)->getD();
+				temp = ((Rectangle*)tempObj)->getD();
 				temp->SetX();
 				temp->SetY();
 			}break;
@@ -224,4 +230,6 @@ bool ObjectList::EditItemInPos(int pos, Object *obj)
 			system("cls");
 		}
 	}
+
+	return true;
 }

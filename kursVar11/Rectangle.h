@@ -51,7 +51,7 @@ inline double Rectangle::distance(Point & A, Point & B)
 
 inline void Rectangle::ToStd(std::ostream & fout)
 {
-	fout << type() << A << B << C << D << endl;
+	fout << type() << ":" << endl << " Точка A: " << A << "Точка B: " << B << "Точка C: " << C << "Точка D: " << D << endl;
 }
 
 inline void Rectangle::read(ifstream & fin)
