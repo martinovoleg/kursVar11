@@ -1,4 +1,4 @@
-The PROGRAM kursovoi.exe (c) andermirik
+The PROGRAM kursovoi.exe (c) 
 
 The structure of the config file.txt
 (should be in the root folder of the project)

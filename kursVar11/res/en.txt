@@ -57,30 +57,19 @@ s: save config
 name:
 Session loaded
 Demonstration:
-1.Mode Fly
-2.Mode Heicopter
-3.Mode the Airplane
-4.Mode ColoredHeli
+1. Figure Ellipse
+2. The shape of the Rectangle
 
 
 c.смена языка
 s.container view
 b.back
 
-1.Add the Fly to the container
-2.Remove the last Fly from the container
+1. Add the ellipse to the container
+2.Remove the last Ellipse from the container
 
-1.Add the helicopter to the container
-2.Remove the last Helicopter from the container
-
-1.Add the Airplane to the container
-2.Remove the last airplane from the container
-
-1.Add Color in the container
-2.Remove the last color from the container
-
-1.Add ColoredHeli in the container
-2.Remove the last ColoredHeli from the container
+1.Add Rectangle to Container
+2.Remove the last Rectangle from the container
 
 c.смена языка
 b.back
