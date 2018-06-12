@@ -74,11 +74,10 @@ b.back
 c.смена языка
 b.back
 o.object count
-object count:
 w.work with n-element of container
 
 Element has no founded
-Work with object: 
+t.Calculate the distance between the centers of the ellipses 
 Reduct
 Display
 Method

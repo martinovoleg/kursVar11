@@ -135,6 +135,8 @@ bool ObjectList::EditItemInPos(int pos, Object *obj)
 	{
 		if ((pos < 0 || pos >= objects.size()))
 		{
+			cout << sysMsgs[lang_now][31] << endl;
+			system("pause");
 			return false;
 		}
 

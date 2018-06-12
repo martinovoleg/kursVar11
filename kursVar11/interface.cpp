@@ -103,8 +103,8 @@ void MsgInit() {
 	sysMsgs[eng][12] = "1. Small radius";
 	sysMsgs[rus][13] = "2. Большой радиус";
 	sysMsgs[eng][13] = "2. Large radius";
-	sysMsgs[rus][14] = "Incorrect value entered, try again!";
-	sysMsgs[eng][14] = "Введено некоректное значение, попробуйте еще раз!";
+	sysMsgs[eng][14] = "Incorrect value entered, try again!";
+	sysMsgs[rus][14] = "Введено некоректное значение, попробуйте еще раз!";
 	sysMsgs[rus][15] = "3. Координаты центра";
 	sysMsgs[eng][15] = "3. The coordinates of the center";
 	sysMsgs[rus][16] = "Esc. Назад";
@@ -137,6 +137,8 @@ void MsgInit() {
 	sysMsgs[eng][29] = "The item is added!";
 	sysMsgs[rus][30] = "Контейнер пуст! ";
 	sysMsgs[eng][30] = "The container is empty!";
+	sysMsgs[rus][31] = "Введен неккоректный индекс! ";
+	sysMsgs[eng][31] = "A non-correct index is entered!";
 }
 
 void Interface::Init(std::string config) {
